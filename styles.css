@@ -1,0 +1,173 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Permanent+Marker&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+/*display flex alinear al contenedor*/
+body, .card, #spiral, .mask, .photos, .letters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background-image: radial-gradient(#eec127,#a35609);
+    height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.card {
+    height: 100%;
+    border: solid red 4px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.logo {
+    position: absolute;
+    height: 40%;
+    animation: moveYreg 1s ease forwards,
+    shake 1s linear infinite;
+    z-index: 20;
+}
+
+.logo.active {
+    animation: moveY 1s ease forwards;
+}
+
+#spiral {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    transition: transform 1.5s ease;
+    transform: scale(0);
+}
+
+#spiral.active {
+    transform: scale(1);
+}
+
+/* #spiral::before, */
+.mask{    
+    position: absolute;
+    content: "";
+    width: 90%;
+    height: 90%;
+    z-index: -5;
+    -webkit-mask: url(./res/spiral.svg);
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask: url(./res/spiral.svg);
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    overflow: hidden;
+    animation: rotate 8s linear infinite;
+}
+
+.mask::before {
+    position: absolute;
+    content: '';
+    width: 0%;
+    height: 0%;
+    border-radius: 50%;
+    background: #eec127;
+    box-shadow: 0px 0px 50px red inset;
+    transition: width 2s ease .5s, height 2s ease .5s;
+}
+
+.mask.active::before{
+    width: 100%;
+    height: 100%;
+}
+
+.photos {
+    width: 0%;
+    height: 0%;
+    position: absolute;
+    transition: width 2s ease 1s, height 2s ease 1.2s;
+    overflow: hidden;
+}
+
+.letters h1 {
+    position: absolute;
+    bottom: 16%;
+    color: whitesmoke;
+    -webkit-text-stroke: black 1px;
+    text-shadow: 0px 0px 15px #df3210,0px 0px 15px #df3210;    
+}
+
+.letters h1:nth-child(2){
+    bottom: 12%;
+}
+.letters h1:nth-child(3){
+    font-size: 3rem;
+    bottom: 4%;
+    color: #551508;
+    -webkit-text-stroke: white 1px;
+    text-shadow: 0px 0px 15px white,0px 0px 15px white;
+}
+
+.photos img {
+    position: absolute;
+    height: 60%;
+    z-index: 10;
+}
+
+.photos.active {
+    width: 100%;
+    height: 100%;
+}
+
+/* animaciones */
+@keyframes rotate {
+    from{
+        transform: rotate(0deg)
+    }
+    to{
+        transform: rotate(180deg)
+    }    
+}
+
+@keyframes shake {
+    25%{transform: 
+            translateY(-10px)
+        }
+    
+    75%{transform: 
+        translateY(10px)
+    }
+    50%, 100%{transform: 
+        translateY(0px)
+    }
+}
+
+@keyframes moveY {
+    to{
+        transform: translateY(-100%) scale(0.5)
+    }    
+}
+
+@keyframes moveYreg {
+    from{transform: translateY(-100%) scale(0.5)}
+    to{
+        transform: translateY(0%) scale(1)
+    }    
+}
+
+/* media querys */
+@media (orientation: portrait){
+    body {
+        width: 100vw;
+    }
+    .card {
+        width: 100%;
+        height: auto;
+    }
+}
