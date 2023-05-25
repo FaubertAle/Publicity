@@ -1,5 +1,3 @@
-// alert('linkeado');
-
 const viewport = document.body.getBoundingClientRect();
 const card = document.querySelector('.card');
 
@@ -7,6 +5,7 @@ const logo = document.querySelector('.logo');
 const spiral = document.querySelector('#spiral');
 const mask = document.querySelector('.mask');
 const photos = document.querySelector('.photos');
+const letters = document.querySelector('.letters');
 
 
 
@@ -26,8 +25,5 @@ logo.addEventListener('click',()=>{
     mask.classList.toggle('active');
     spiral.classList.toggle('active');
     photos.classList.toggle('active');
+    letters.classList.toggle('active');
 })
-// function inicio(e){
-//     con
-
-// }
