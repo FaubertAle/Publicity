@@ -21,7 +21,6 @@ body {
 
 .card {
     height: 100%;
-    border: solid red 4px;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -97,26 +96,23 @@ body {
 
 .letters h1 {
     position: absolute;
-    bottom: 16%;
+    top: 21%;
     color: whitesmoke;
     -webkit-text-stroke: black 1px;
-    text-shadow: 0px 0px 15px #df3210,0px 0px 15px #df3210;    
+    text-shadow: 0px 0px 15px #df3210,0px 0px 15px #df3210;
+    opacity: 0;
+    transition: opacity 2s ease .8s;
+    z-index: 22;
 }
 
-.letters h1:nth-child(2){
-    bottom: 10%;
-}
-.letters h1:nth-child(3){
-    font-size: 3rem;
-    bottom: 2%;
-    color: #551508;
-    -webkit-text-stroke: white 1px;
-    text-shadow: 0px 0px 15px white,0px 0px 15px white;
+.letters.active h1 {
+    opacity: 1;
 }
 
 .photos img {
     position: absolute;
     height: 60%;
+    transform: translateY(5%);
     z-index: 10;
 }
 
@@ -125,13 +121,49 @@ body {
     height: 100%;
 }
 
+#limon{
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    left: 10%;
+    top: 25%;
+    animation: palpite 2s linear infinite;
+}
+
+#casc {
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    bottom: 30%;
+    right: 8%;
+    animation: palpite 2s linear infinite;
+}
+#chl {
+    position: absolute;
+    width: 75%;
+    bottom: -12%;
+    animation: shake2 1s linear infinite;
+}
+
 /* animaciones */
-@keyframes rotate {
-    from{
+@keyframes shake2 {
+    0%, 50%, 100%{
         transform: rotate(0deg)
     }
-    to{
-        transform: rotate(180deg)
+    25%{
+        transform: rotate(-3deg)
+    }
+    75%{
+        transform: rotate(3deg)
+    }    
+}
+
+@keyframes palpite {
+    0%,100%{
+        transform: scale(1)
+    }
+    50%{
+        transform: scale(1.5)
     }    
 }
 
