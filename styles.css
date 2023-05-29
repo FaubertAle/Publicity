@@ -1,12 +1,10 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Permanent+Marker&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
 *{
     padding: 0;
     margin: 0;
 }
 /*display flex alinear al contenedor*/
-body, .card, #spiral, .mask, .photos, .letters {
+body, .card, #background, .photos, .letters, .redes, .spiral {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,15 +14,23 @@ body {
     background-image: radial-gradient(#eec127,#a35609);
     height: 100vh;
     box-sizing: border-box;
-    font-family: 'Luckiest Guy', cursive;
+    font-family: 'Sigmar', cursive;
+    position: relative;
+}
+
+body::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: url(./res/background/texBack.jpg);
+    opacity: 0.08;
 }
 
 .card {
     height: 100%;
     box-sizing: border-box;
     position: relative;
-    overflow: hidden;
-
 }
 
 .logo {
@@ -37,134 +43,6 @@ body {
 
 .logo.active {
     animation: moveY 1s ease forwards;
-}
-
-#spiral {
-    position: absolute;
-    width: 100%;
-    top: 20%;
-    transition: transform 1.5s ease;
-    transform: scale(0);
-}
-
-#spiral.active {
-    transform: scale(1);
-}
-
-/* #spiral::before, */
-.mask{    
-    position: absolute;
-    content: "";
-    width: 90%;
-    height: 90%;
-    z-index: -5;
-    -webkit-mask: url(./res/spiral.svg);
-    -webkit-mask-size: contain;
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    mask: url(./res/spiral.svg);
-    mask-size: contain;
-    mask-position: center;
-    mask-repeat: no-repeat;
-    overflow: hidden;
-    animation: rotate 8s linear infinite;
-}
-
-.mask::before {
-    position: absolute;
-    content: '';
-    width: 0%;
-    height: 0%;
-    border-radius: 50%;
-    background: #eec127;
-    box-shadow: 0px 0px 50px red inset;
-    transition: width 2s ease .5s, height 2s ease .5s;
-}
-
-.mask.active::before{
-    width: 100%;
-    height: 100%;
-}
-
-.photos {
-    width: 0%;
-    height: 0%;
-    position: absolute;
-    transition: width 2s ease 1s, height 2s ease 1.2s;
-    overflow: hidden;
-}
-
-.letters h1 {
-    position: absolute;
-    top: 21%;
-    color: whitesmoke;
-    -webkit-text-stroke: black 1px;
-    text-shadow: 0px 0px 15px #df3210,0px 0px 15px #df3210;
-    opacity: 0;
-    transition: opacity 2s ease .8s;
-    z-index: 22;
-}
-
-.letters.active h1 {
-    opacity: 1;
-}
-
-.photos img {
-    position: absolute;
-    height: 60%;
-    transform: translateY(5%);
-    z-index: 10;
-}
-
-.photos.active {
-    width: 100%;
-    height: 100%;
-}
-
-#limon{
-    position: absolute;
-    width: 20%;
-    height: 20%;
-    left: 10%;
-    top: 25%;
-    animation: palpite 2s linear infinite;
-}
-
-#casc {
-    position: absolute;
-    width: 25%;
-    height: 25%;
-    bottom: 30%;
-    right: 8%;
-    animation: palpite 2s linear infinite;
-}
-#chl {
-    position: absolute;
-    width: 75%;
-    bottom: -12%;
-    animation: shake2 1s linear infinite;
-}
-
-/* animaciones */
-@keyframes shake2 {
-    0%, 50%, 100%{
-        transform: rotate(0deg)
-    }
-    25%{
-        transform: rotate(-3deg)
-    }
-    75%{
-        transform: rotate(3deg)
-    }    
-}
-
-@keyframes palpite {
-    0%,100%{
-        transform: scale(1)
-    }
-    50%{
-        transform: scale(1.5)
-    }    
 }
 
 @keyframes shake {
@@ -190,6 +68,221 @@ body {
     from{transform: translateY(-100%) scale(0.5)}
     to{
         transform: translateY(0%) scale(1)
+    }    
+}
+
+#background {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    transition: transform 1.5s ease;
+    transform: scale(0);
+}
+
+#background.active {
+    transform: scale(1);
+}
+
+#b-right, #b-left {
+    position: absolute;
+    z-index: -10;
+    width: 50%;
+    animation: palpite 3s linear infinite;
+}
+#b-right {
+    
+    right: 2%;
+    top: -15%;
+    transform: rotate(-30deg);
+}
+
+#b-left {
+    left: 0;
+    bottom: 10%;
+}
+
+/* #spiral::before, */
+.mask {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    z-index: -5;
+    overflow: hidden;
+}
+.spiral{
+    width: 100%;
+    height: 100%;
+    -webkit-mask: url(./res/background/spiral.svg);
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask: url(./res/background/spiral.svg);
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    animation: rotate 70s linear infinite;
+}
+
+.spiral::before {
+    position: absolute;
+    content: '';
+    width: 0%;
+    height: 0%;
+    border-radius: 50%;
+    background: #eec127;
+    box-shadow: 0px 0px 50px red inset;
+    transition: width 3s ease .8s, height 3s ease .8s;
+}
+
+#background.active .mask .spiral::before {
+    width: 100%;
+    height: 100%;
+}
+
+.photos {
+    width: 0%;
+    height: 0%;
+    position: absolute;
+    transition: width 2s ease, height 2s ease;
+    overflow: hidden;
+}
+
+.photos.active {
+    width: 100%;
+    height: 100%;
+}
+
+.letters h1 {
+    position: absolute;
+    top: 18%;
+    color: whitesmoke;
+    -webkit-text-stroke: black 1px;
+    text-shadow: 0px 0px 15px #df3210,0px 0px 15px #df3210;
+    opacity: 0;
+    transition: opacity 1s ease ;
+    z-index: 22;
+    font-size: 2.5rem;
+    font-family: 'Sigmar', cursive;
+    text-align: center;
+}
+
+.photos.active .letters h1 {
+    opacity: 1;
+}
+
+.photos img {
+    position: absolute;
+    height: 0%;
+    transform: translateY(5%);
+    z-index: 10;
+    /* animation: revealOn 1s linear reverse; */
+}
+
+.photos.active img {
+    animation: revealOn 1s linear 1.5s forwards;
+}
+@keyframes revealOn {
+    0%{height: 0%;}
+    100%{height: 60%;}
+}
+
+.arrows {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
+.n1, .n2, .n3, .ln1, .ln2, .ln3 {
+    position: absolute;
+    font-size: 1.4rem;
+    color: white;
+    text-shadow: 0px 0px 8px black, 0px 0px 8px black;
+    font-family: 'Sigmar', cursive;
+    text-align: center;
+}
+
+.ln1 {
+    bottom: 30%;
+    right: -35%;
+}
+
+.n1 {
+    width: 50%;
+    rotate: -10deg;
+    bottom: -5%;
+    right: -15%;
+}
+
+.ln2 {
+    top: 0%;
+    left: -35%;
+}
+
+.n2 {
+    width: 35%;
+    scale: -1 1;
+    top: -20%;
+    left: -5%;
+    rotate: -20deg;
+}
+
+.ln3 {
+    top: 10%;
+    right: -35%;
+}
+
+.n3 {
+    position: absolute;
+    width: 40%;
+    scale: 1 -1;
+    rotate: -50deg;
+    right: -10%;
+}
+#chl {
+    position: absolute;
+    animation: shake2 1s linear infinite;
+    width: 70%;
+    height: 15%;
+    bottom:12%;
+    
+}
+
+
+.redes {
+    position: absolute;
+    bottom: 2%;
+    width: 50%;
+    height: 8%;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.redes a {
+    width: 20%;
+}
+
+/* animaciones */
+
+@keyframes rotate {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}    
+}
+@keyframes shake2 {
+    0%, 50%, 100%{
+        transform: rotate(0deg)
+    }
+    25%{
+        transform: rotate(-3deg)
+    }
+    75%{
+        transform: rotate(3deg)
+    }    
+}
+
+@keyframes palpite {
+    0%,100%{
+        transform: scale(1)
+    }
+    50%{
+        transform: scale(1.5)
     }    
 }
 
